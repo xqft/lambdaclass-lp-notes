@@ -6,8 +6,8 @@ These may be useful to you, although that's not their purpose (for now).
 
 ## Unix
 
-How does complexity relate to modularity? 
-
+  * How does complexity relate to modularity? 
+    * Modularity, abstraction and composition are extremely useful in many areas of human knowledge. **Dividing** a big system in smaller and simpler parts is the best way of **conquering** complexity, agilizing development.
   * Why is the text-stream interface important in the Unix Philosophy?
     * Text-streams are simple, universal and they enforce the encapsulation of the programs (by not exposing internals needed by more complicated communication processes)
   * Why should design for transparency encourage simple interfaces? 
