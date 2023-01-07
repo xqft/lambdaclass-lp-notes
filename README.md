@@ -23,4 +23,4 @@ How does complexity relate to modularity?
   * Why premature local optimization reduces overall performance? 
     * Premature local optimization leads to overcomplex code that may not represent a boost in performance in the overall program, just a waste of present and future time.
   * There is the approach of doing things in "one true way", how does it affect extensibility? 
-    * Definitive solutions don’t exist most of the times, code will break and grow indefinitely. Coding definitely directly weakens a program extensibility.
+    * Definitive solutions don’t exist most of the times, code will break and grow indefinitely. Definitive coding weakens a program's extensibility.
