@@ -24,3 +24,19 @@ These may be useful to you, although that's not their purpose (for now).
     * Premature local optimization leads to overcomplex code that may not represent a boost in performance in the overall program, just a waste of present and future time.
   * There is the approach of doing things in "one true way", how does it affect extensibility? 
     * Definitive solutions don’t exist most of the times, code will break and grow indefinitely. Definitive coding weakens a program's extensibility.
+
+## Linux
+
+* What do the following commands do?:
+  * ls -l /bin/usr > ls-output.txt 2>&1
+    * Redirects the stdout (file descriptor 1) of ls -l /bin/usr (list of files in /bin/usr) into a file called ls-output.txt and redirects stderr (descriptor 2) into stdout.
+  * ls /bin /usr/bin | sort | uniq | less
+    * Sorts and filters for unique lines the file lists of /bin and /usr/bin directories, opens the result with less.
+  * ls /bin /usr/bin | sort | uniq | grep zip
+    * The same as above but outputs lines that contain 'zip' instead of opening in less.
+* How does Linux determine how to interpret the format of a file?
+  * The 'file' program executes different tests (filesystem tests, magic tests and language tests) over its arguments, and the first test that passes will determine that file's type (which the program will output in text). Info extracted from the 'file' manpage. In Linux there's no concept of a file type extension, each program will interpret a file depending on its contents.
+* What does the sda2 folder represent?
+  * 'sd' stands for SCSI disk, 'a' means that its the first disk device in the system (there could be 'b, c', 'd'... disks) and '2' stands for the second partition of that disk. So the 'sda2' folder contained in the /dev (device) directory represents the second partition of the first disk installed in the system.
+* What do /root and /usr/bin store?
+  * /root is the home directory of the root user. /usr/bin contains binaries shared by all users of a system.
