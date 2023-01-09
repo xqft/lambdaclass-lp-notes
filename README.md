@@ -40,3 +40,55 @@ These may be useful to you, although that's not their purpose (for now).
   * 'sd' stands for SCSI disk, 'a' means that its the first disk device in the system (there could be 'b, c', 'd'... disks) and '2' stands for the second partition of that disk. So the 'sda2' folder contained in the /dev (device) directory represents the second partition of the first disk installed in the system.
 * What do /root and /usr/bin store?
   * /root is the home directory of the root user. /usr/bin contains binaries shared by all users of a system.
+
+## Networking
+
+### How the Internet Really Works (Article 19, Knodel)
+#### Chapter 1
+* A network is composed of nodes which represent devices that transceive information.
+* Every node has an address (in the internet's case, an Internet Protocol (IP) address).
+* Devices called routers connect to different networks for directing IP packets (data between nodes).
+* Servers are network nodes that provides services by transmitting, processing and receiving information from clients, devices which connect to these and consume services.
+* A network can be centralized (with clients connecting through a main router), decentralized (where many routers and clients connect to each other) and **distributed** (where are nodes all equal and can act as clients and servers)>
+
+#### Chapter 2
+* Devices talk through packets of data which contain both routing information and content.
+* Packets are codified into binary data that can be transmitted via different physical phenomena (electrical, optical and radiofrequency)
+
+#### Chapter 3
+* There are different protocols that define the details of how a device can transmit and interpret packets (TCP, UDP, QUIC).
+* Different international organizations are in charge of designing, defining, implementing and standarizing internet protocols.
+* Each device is assigned a unique IP address in a network for identifying it. In the present we use IPv4 and IPv6 formats for these.
+* When a device sends a packet from a private address to the internet, it does through its network router and it retags packets using NAT (Network Adress Translation) before sending them to the next router the can (probably the ISP's), this next router does the same. Each router will verify if the destination address is located inside its own network so it knows where to send the packet next, until it reaches its destination.
+* The Internet Protocol Security (IPSec) authenticates packets and drops those that appear invalid or maliciously modified (for example, the packet may have a fake sender IP address, this being called IP spoofing). IPSec is not widely used because of its complexity.
+
+#### Chapter 4
+* The internet is made by the interconnection of small networks called autonomous systems, which are administered independently from each other.
+* This interconnection is made possible by the border Gateway Protocol (BGP), which defines information about packets routes and makes possible calculating the shortest path for a packet.
+* Two big AS can *peer* with each other, by letting data flow between each other toll free. BGP also considers *transit*, by calculating the toll that an AS needs to pay for communicating with a non-peer.
+* An Internet Exchange Point (IXP) is a physical connection of hundreds of ASs. ASs connected in a same IXP are automatically peers. These devices help create faster interconnections between networks.
+* Data can be split in multiple packets and transported following several protocols (UDP, TCP, QUIC).
+* UDP splits data in "datagrams" and packages it with information about the software that process the data both in the source and origin. UDP is used when delayed packets and error correction aren't critical issues (like video streaming and online gaming).
+* TCP on the other hand offers guarantees for packet reliability and correctness by establishing a communication channel (pipe or stream) between two nodes and verifying that all required packets arrive and are valid. If a packet gets lost or is damaged, it needs to be resent and every other packet needs to wait for it. This makes TCP slower.
+* QUIC aims to be a middle option between these two, by using UDP for transmitting but adding extra information to datagrams that will be used in the receveing end for verifying data integrity. Packets don't need to wait for errors to be solved.
+
+#### Chapter 5
+* A Domain Name System (DNS) is used for linking an IP address (or other data formats) to a unique text name. This is because addresses are long a difficult to remember.
+* Domain names can be split in different components which are sold and administered by different entities.
+* **Example:** *unique-and.memorable.com*
+  * *unique-and* is the hostname, which is administered by the domain owner.
+  * *.memorable* is the second-level name, administered by registrars and domain owners.
+  * *.com* is the top-level name, administered by registries and TLD Operators.
+* A home router contains a local DNS resolver that is in charge of delivering your device the IP address associated with a domain name. If the local DNS doesn't know it, it asks the root server (highest hierarchy). If the root doesn't know, it sends the address of the top-level name registry server so the local can ask. This cycle repeats all the way to the bottom of the hierarchy until the full domain name is retrieved.
+* The DNS Security Extensions protocol (DNSSEC) digitally signs DNS data for authentication so DNS lookups can not be hijacked by a malicious actor.
+* Even with DNSSEC, every DNS request is public. So DNS over HTTPS protocol (DOH) was created to protect the requests from intermediaries and identify trusted DNS providers.
+* HTTP (Hypertext Transfer Protocol) is the widely used protocol for exchanging hypertext over the WWW. It defines how data will be requested and sent between web browsers and servers using TCP under the hood.
+* Secure HTTP (HTTPS) adds a layer of encryption into HTTP messages suing the Transport Layer Security protocol (TLS).
+* TLS works by establishing a connection between two nodes by sharing a secret key through a handshake, which will enable the transmission of encrypted data. Third-party organizations called certificate authorities issue certificates to services, so users can verify they are communicating with a trusted node via TLS.
+* Cryptography is used for securing internet communications. Two cryptographic techniques are used today: signing and encryption.
+  * Signing works by applying a unique sign into data that wants to be sent. The recipient will have a copy of that sign and will compare it with the message received. If the sign is missing or altered from the original, then the message can not be authenticated.
+  * Encryption is an operation whereby a text message is *encrypted* into ciphertext, which can't be interpreted directly, one needs to know the encryption algorith (cipher) and the key that was used with it to decrypt the message.
+    * If the encryption technique is symmetric, this means that both the sender and the receiver have the same key.
+    * If the technique is asymmetric, then the receiver has a private key and the sender has the receiver's public key, which can use to encrypt a message only the receiver can decrypt with its private key.
+* Transport encryption is used to secure communications between nodes in a network.
+* Seemingly secure encrypted communications can have many weaknesses, like being vulnerable to machine-in-the-middle attacks or secret backdoors.
