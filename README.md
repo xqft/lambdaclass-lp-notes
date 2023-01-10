@@ -43,7 +43,9 @@ These may be useful to you, although that's not their purpose (for now).
 
 ## Networking
 
-### How the Internet Really Works (Article 19, Knodel)
+<details>
+<summary>'How the Internet Really Works' notes</summary>
+
 #### Chapter 1
 * A network is composed of nodes which represent devices that transceive information.
 * Every node has an address (in the internet's case, an Internet Protocol (IP) address).
@@ -92,3 +94,27 @@ These may be useful to you, although that's not their purpose (for now).
     * If the technique is asymmetric, then the receiver has a private key and the sender has the receiver's public key, which can use to encrypt a message only the receiver can decrypt with its private key.
 * Transport encryption is used to secure communications between nodes in a network.
 * Seemingly secure encrypted communications can have many weaknesses, like being vulnerable to machine-in-the-middle attacks or secret backdoors.
+</details>
+
+
+<details>
+<summary>'Practical Packet Analysis with Wireshark' notes</summary>
+
+#### Chapter 1
+* Packet analysis is the process of capturing and interpreting data flowing across a network. Packet analysis is performed by a packet sniffer.
+* The Open Systems Interconnection (OSI) model is an industry-recommended standard defined by the ISO, which establishes a hierarchical classification of network protocols depending on its different purposes. These are, from top to bottom: Application (HTTP, FTP), Presentation (ASCII, MPEG, JPEG), Session (NetBIOS, SAP, SDP, NWLink), Transport (TCP, UDP, SPX), Network (IP, IPX), Data Link (Ethernet, Token Ring, FDDI, AppleTalk) and Physical (wired, wireless. A useful mnemonic for these is *Please Do Not Throw Sausage Pizza Away*.
+* When data needs to be transported it travels from the top to the bottom of the model, suffering different transformations (data encapsulation) until reaching the physical layer, in which the data is communicated from one device to another, and then climbs up again to the top layer where the user can consume it.
+* There are three main kinds of network devices. Hubs operate at layer 1 and they repeat packets sent to it into every device that's connected to. Switches operate at layer 2 and transmit a packet only to its destination, by knowing every device identity (through a MAC address). Routers operate at layer 3 and work in a more complex way, enabling multiple networks of devices to communicate with each other.
+* There are three ways of classifying traffic: broadcasting, in which a node sends packets to every device in its system; multicasting, in which packets are transmitted from a single source to multiple destinations simultaneously and unicasting, in which packets are transmitted from a source into a single destination.
+
+#### Chapter 7
+* The Address Resolution Protocol (ARP) is used for resolving an IP address into a MAC address when communication occurs in a local network and the addressee's MAC is missing. This protocol acts as a bridge between layers 3 and 2.
+* An IPv4 address is a 32 bit number composed of a network portion and a host portion, defined by a network mask (which masks in binary the part of the address that identifies the network that a device is in. The remaining portion identifies the device itself).
+* Every packet has a Time to Live (TTL), which defines how many times a packet can be sent from a router to another before it is discarded (so transmission loops can't exist).
+* If a packet's data is bigger than the Maximum Transmission Unit (MTU), IP Fragmentation will split the packet
+* An IPv6 address is 128 bits, as one of its reasons for existing is expanding the possible addresses that can exist in a network.
+* The IPv6 address is also divided in a network and host portion, which distributions depends on its context. For example, in link-local unicast traffic (this is, direct traffic between two devices) starts with a characteristic set of 64 bits, and continues with the endpoint interface identifier, which could be a MAC address on an Ethernet network.
+* IPv6 fragmentation doesn't happen too often as a device transmitting packets is expected to adjust its data to comply with the MTU before sending it.
+* The Internet Control Message Protocol (ICMP) is used by TCP/IP for providing information about a network. The ping utility uses ICMP's echo request packets.
+
+</details>
