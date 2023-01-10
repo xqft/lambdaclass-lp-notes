@@ -85,7 +85,7 @@ These may be useful to you, although that's not their purpose (for now).
 * The DNS Security Extensions protocol (DNSSEC) digitally signs DNS data for authentication so DNS lookups can not be hijacked by a malicious actor.
 * Even with DNSSEC, every DNS request is public. So DNS over HTTPS protocol (DOH) was created to protect the requests from intermediaries and identify trusted DNS providers.
 * HTTP (Hypertext Transfer Protocol) is the widely used protocol for exchanging hypertext over the WWW. It defines how data will be requested and sent between web browsers and servers using TCP under the hood.
-* Secure HTTP (HTTPS) adds a layer of encryption into HTTP messages suing the Transport Layer Security protocol (TLS).
+* Secure HTTP (HTTPS) adds a layer of encryption into HTTP messages using the Transport Layer Security protocol (TLS).
 * TLS works by establishing a connection between two nodes by sharing a secret key through a handshake, which will enable the transmission of encrypted data. Third-party organizations called certificate authorities issue certificates to services, so users can verify they are communicating with a trusted node via TLS.
 * Cryptography is used for securing internet communications. Two cryptographic techniques are used today: signing and encryption.
   * Signing works by applying a unique sign into data that wants to be sent. The recipient will have a copy of that sign and will compare it with the message received. If the sign is missing or altered from the original, then the message can not be authenticated.
@@ -118,3 +118,27 @@ These may be useful to you, although that's not their purpose (for now).
 * The Internet Control Message Protocol (ICMP) is used by TCP/IP for providing information about a network. The ping utility uses ICMP's echo request packets.
 
 </details>
+
+---
+
+- How are data transmitted over the Internet?
+  * Data needs to be parsed, transformed, encapsulated and encoded in packets through layers of network protocols (OSI model) until reaching an electromagnetic medium of transport. Inverse operations need to be made on the receiving end so data will appear the same as the one that was sent to the end user (traveling up the OSI layer).
+- What functions do the layers of the OSI model perform?
+  * Every layer manipulates data and executes actions with the goal of transmitting it. The top layers are in charge of manipulating and presenting data for the user to consume, and the lower are in charge of getting the data prepared and transmitting over devices in a network, by the use of many protocols.
+- What is the difference between TCP and UDP?
+  * TCP establishes a communication channel between two devices and strictly controls the flow and validity of the packets transceived. UDP transmits data in a format called "datagrams" and reconstructs it on the receiving end, without guaranteeing that packets will arrive in a valid state. This makes UDP faster than TCP at the expense of packet correctness.
+- What does ARP mean?
+  * ARP is the Address Resolution Protocol, which uses multicasting over a network to determine the hardware address of a device when only the IP address is known.
+- What range corresponds to private IP addresses?
+  * For IPv4: 10.0.0.0 to 10.0.255.255, 172.16.0.0 to 172.16.255.255 and 192.168.0.0 to 192.168.255.255
+  * For IPv6, a link-local unicast address starts with the prefix *fe80* followed by padding and has 64 bits of addressable space, so: fe80:0000:0000:0000:/64.
+- What does IPv6 propose to solve against IPv4?
+  * The limited space of the 32 bit IPv4 addresses for representing information and devices.
+- What does IPsec guarantee?
+  * That packets received will be valid and not maliciously modified.
+- What does DNS mean? How does it work?
+  * DNS means Domain Name System, it is used for resolving domain names into IP addresses. The local router will resolve an address if it knows which corresponds to the solicited domain. If not, it will ask the root server. If the root server doesn't satisfy the request, it will lead the router into the next server which stores addresses corresponding to the top-level name of the domain. This is repeated through the layers of a domain name until the domain is found in a table list and the address is retrieved.
+- What is the difference between HTTPS and HTTP?
+  * HTTPS (or Secure HTTP) uses the TLS (Transport Layer Security) protocol, which works by establishing an encrypted communication stream between two nodes. The server needs to be certified by a CA (third-party) for it to use HTTPS. 
+- What is the difference between asymmetric and symmetric cryptography?
+  * In symmetric crypthography the origin and the receiver have the same copy of a public key which they can use to decrypt a message. In asymmetric the sender has a receiver's public key which can be used for encrypting a message only the receiver can decrypt using its private key.
