@@ -142,3 +142,54 @@ These may be useful to you, although that's not their purpose (for now).
   * HTTPS (or Secure HTTP) uses the TLS (Transport Layer Security) protocol, which works by establishing an encrypted communication stream between two nodes. The server needs to be certified by a CA (third-party) for it to use HTTPS. 
 - What is the difference between asymmetric and symmetric cryptography?
   * In symmetric crypthography the origin and the receiver have the same copy of a public key which they can use to decrypt a message. In asymmetric the sender has a receiver's public key which can be used for encrypting a message only the receiver can decrypt using its private key.
+
+## Git
+I'll be writing only about things that caught my attention or that I didn't know before.
+
+### Introduction
+- Git is a distributed version control system. This means every device has a copy of all the history of a project in its own machine, and operations are mostly local.
+- `git commit -a` stages every tracked file and commits.
+- `git commit --amend` for replacing the last commit with a new one that includes the previous changes and the staged ones.
+
+### Remotes
+- Remote repositories (or remotes) are versions of a project which are hosted in a network. Collaborators may have their own remotes where they make changes to a project.
+- The `origin` remote is the repo from where you cloned the project.
+- `git remote add <shortname> <url>` adds a new remote as a shortname that you can reference for fetching (`git fetch <remote>`) or pushing (`git push <remote> <branch>`) changes.
+
+### Tagging
+- Git has the ability to tag specific snapshots of a repository's history.
+- `git tag -l <expr>` searches for tags that matches the expression.
+- There are lightweight and annotated tags. Annotated tags are chesummed, contain the tagger's information, a message and can be signed. `git tag -a <tag> -m <message>` for annotated, `git tag <tag>` for lightweight. 
+- For sharing tags with other remotes, they need to be pushed: `git push <remote> <tag>/--tags`
+- `git tag -d <tag>` removes tags, `git push <remote> --delete <tag>` shares the change.
+- You can detach HEAD and explore where a tag is pointing with `git checkout <tag>`
+
+### Branching
+- Branches are pointers to commits (with each one having a pointer to the commit that precedes it in time).
+
+### Rebasing
+- Rebasing differs from a merge in that it changes a repository's history, by applying the current branch's commits that diverge from main (for ex.) after that branch. The current branch gets moved to that last commit and then you can fast forward main to your current branch for finishing the merging.
+- **The Golden Rule of Rebasing** is to never use it on public branches, as you could create messy histories in your local machine or a peer's by fetching and pushing rebased commits.
+
+Guide questions:
+
+- Why is branching necessary?
+  * To separate different versions of a project, depending whether a version is, for example, WIP (fixes and features are being developed) or released to production.
+- What is the difference between `merge` and `rebase`?
+  * Rebasing differs from a merge in that it changes a repository's history, by applying the current branch's commits that diverge from main (for ex.) after that branch. The current branch gets moved to that last commit and then you can fast forward main to your current branch for finishing the merging.
+- What is a stash?
+  * The stash is a stack of unfinished diffs from modified tracked files, which are stored for applying later in the same or a different branch, so the developer can work on something else.
+- What does `cherry-pick` do?
+  * When on a diverging branch, `cherry-pick` helps by cloning commits from another branch and adding them after the current branch.
+- What does `reflog` do?
+  * git stores local information about where was HEAD everytime it was moved. `reflog` returns a list of reference names that can be used in other commands.
+- What does `git reset --hard HEAD` do?
+  * It discards changes (and commits) made after the commit where HEAD points. `--hard` allows to modify the current working directory.
+- How to get back to a previous commit?
+  * `git checkout`
+- How to do a pull request?
+  * Fork the repo, create a new branch with a descriptive name about the changes, commit changes, push and then create the PR. If the changes are already made or commited it will be necessary to stash them (after soft-reset them if they were commited) and start again by creating a new branch, then popping the changes.
+- Why are pull requests important?
+  * They offer control over a projects development by allowing changes to be reviewed and tested.
+- How to clone a repository using SSH?
+  * First generate an SSH key pair in the machine and add it o GitHub. Then you can use the SSH domain for cloning a repo.
