@@ -202,3 +202,24 @@ Guide questions:
   * By making use of the `@app.route()` decorator.
 - Using the `logging` library, how do you log to a file?
   * A FileHandler needs to be created to specify a file for logging into. This can be made manually or through the `basicConfig()` function.
+
+## Docker
+- Docker is a lightweight virtualization tool, it allows a machine to set a customized virtual environment from an *image*, coded through a simple script language (Dockerfile), without using a VM.
+- Docker runs on the host OS and apps are executed inside *containers*, which are isolated processes with their own file system (UFS), networking, CPU and RAM allocated resources.
+- Because of the isolated nature of containers, ports need to be explicitely exposed and mapped to machine's ports. Multiple services can communicate with each other by exposing ports with the help of an internal DNS, with these need to be mapped to the machine's so they can be externally accessed.
+- Images can be pushed into DockerHub where they can be pulled back from another machine. They can also run through CI/CD or other services like AWS.
+- Multiple docker services can be configured an run through *docker compose* **on a single machine**.
+- Kubernetes is the most popular container orchestrator (this means that it can manage communications, resource management, error handling and scalability issues) that can work in a cluster of machines.
+- Files copied into an image are burned one time and are read-only. A *volume* can be create for synchronizing files and directories from the local machine into the service.
+- Docker will interpret each instruction in a dockerfile as a layer, this means that layers can be cached to optimize build times. When a layer needs to be updated, all layers below will too, this means that instructions need to be set in a specific order so that they're executed only when necessary.
+- Dockerfiles can be multi-stage, for example, a builder stage can be made before a second stage, so the final image can be burned with the binaries built by the first stage.
+- Docker containers are *volatile* and *short-lived*, they need to be designed so they can be easely discarded and replaced.
+
+- In which scenarios would you use containers and in which you would prefer to use VMs?
+  * VMs are preferred when needing to run an entire OS or different kernels than the host's. Containers would be preferred in every other situation where a VM's features aren't necessary, as containers are more lightweight and practical.
+- How do you retrieve and run the latest ubuntu image?
+  * By pulling an ubuntu image with `docker pull ubuntu:<optional tag>` and `docker run`
+- In a Dockerfile, what is the difference between RUN and CMD?
+  * With `CMD` you specify a command to run after launching the built image, there can be only one `CMD` in a dockerfile. `RUN` executes commands for setting up the environment and can create layers on final image as it may modify the file tree.
+- Using port 8080, how do you run an image that exposes port 80?
+  * With the `-p` flag with `docker run/create` you can map a container's port into a host's. In this case: `-p 8080:80`. This is also possible to do in a `docker-compose.yml` file, if using docker compose, via the `ports` key.
