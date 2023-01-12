@@ -215,6 +215,7 @@ Guide questions:
 - Dockerfiles can be multi-stage, for example, a builder stage can be made before a second stage, so the final image can be burned with the binaries built by the first stage.
 - Docker containers are *volatile* and *short-lived*, they need to be designed so they can be easely discarded and replaced.
 
+**Guide questions**
 - In which scenarios would you use containers and in which you would prefer to use VMs?
   * VMs are preferred when needing to run an entire OS or different kernels than the host's. Containers would be preferred in every other situation where a VM's features aren't necessary, as containers are more lightweight and practical.
 - How do you retrieve and run the latest ubuntu image?
