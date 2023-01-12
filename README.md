@@ -193,3 +193,12 @@ Guide questions:
   * They offer control over a projects development by allowing changes to be reviewed and tested.
 - How to clone a repository using SSH?
   * First generate an SSH key pair in the machine and add it o GitHub. Then you can use the SSH domain for cloning a repo.
+
+## Python
+**Guide questions**
+- How do you return how many times a certain character appears in a string using Python?
+  * With the `count()` builtin.
+- How do you handle different routes for your web app in Flask?
+  * By making use of the `@app.route()` decorator.
+- Using the `logging` library, how do you log to a file?
+  * A FileHandler needs to be created to specify a file for logging into. This can be made manually or through the `basicConfig()` function.
