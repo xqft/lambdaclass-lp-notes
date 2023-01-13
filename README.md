@@ -224,3 +224,34 @@ Guide questions:
   * With `CMD` you specify a command to run after launching the built image, there can be only one `CMD` in a dockerfile. `RUN` executes commands for setting up the environment and can create layers on final image as it may modify the file tree.
 - Using port 8080, how do you run an image that exposes port 80?
   * With the `-p` flag with `docker run/create` you can map a container's port into a host's. In this case: `-p 8080:80`. This is also possible to do in a `docker-compose.yml` file, if using docker compose, via the `ports` key.
+
+## Databases
+### SQL
+- The Structured Query Language (SQL) is desgined to query, manipulate and transform data from a relational database.
+- A relational database represents related (two-dimensional) tables.
+- A Database Management System (DBMS) is used for creating and managing databases. There're many DBMS for every database paradigm.
+- SQL follows the CRUD mnemonic (Create, Read, Update, Delete) in its instructions.
+#### PostgreSQL
+- PostgreSQL is a reational DBMS (RDBMS). It's one of the most robust and tested DBMS.
+- PostgreSQL allows for *stored procedures* to be created and use. These are a set of imperative instructions with logical control flow written in a language called PL/pgSQL (Procedural Language/PostgreSQL). PostgreSQL also supports Tcl, Perl and Python.
+- Triggers can be created so they can fire up functions when events happen in the database (like a table update)>
+- After a complex query, a virtual table cloning the result can be created, this is called a *view*.
+- PostgreSQL performs better in a monolithic environment than in a partitioned one.
+#### Redis
+- Redis (Remote Dictionary Service) is a NoSQL key-value store DBMS focused on speed.
+- Redis has builtin a set of plenty data types, like floats, strings, (linked) lists, hashes, sets and sorted sets.
+- A special data type called a HyperLogLog (HLL) is used for estimating the size of a set in constant time with an error less than 1%.
+
+**Guiding Questions**
+- How to use a wildcard as a character?
+  * By wrapping the string in quotes and using the `ESCAPE` clause.
+- What dodes `COALESCE` do?
+  * `COALESCE` is a funcion that returns its first non-null argument.
+- What dodes `LIKE 'S%` do in a query?
+  * This is a condition that gets satisfied with a string which starts with an `S`.
+- What is the difference between PostgreSQL and Redis?
+  * PostgreSQL is robust, SQL and relational, while Redis is NoSQL, key-value and fast.
+- What type of databases are the following? PostgreSQL, Redis, MongoDB, MySQL, HBase, Neo4J, DynamoDB.
+  * Relational, key-value, document, relational, column-oriented, graph, key-value
+- What makes each database type unique?
+  * Its type and implementation or extension depending if its SQL or NoSQL.
