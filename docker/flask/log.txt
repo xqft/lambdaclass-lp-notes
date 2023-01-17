@@ -1,0 +1,28 @@
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.2s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for docker.io/library/python:3.9-slim
+#3 DONE 0.0s
+
+#4 [base 1/1] FROM docker.io/library/python:3.9-slim
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 113B done
+#5 DONE 0.1s
+
+#6 [builder 1/4] COPY Pipfile Pipfile.lock ./
+#6 CACHED
+
+#7 [builder 2/4] RUN python -m pip install --upgrade pip
+#7 CACHED
+
+#8 [builder 3/4] RUN pip install pipenv
+#8 21.96 WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f9f432f2eb0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pipenv/
+#8 42.49 WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f9f432f2d60>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pipenv/
+#8 CANCELED
