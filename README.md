@@ -255,3 +255,9 @@ Guide questions:
   * Relational, key-value, document, relational, column-oriented, graph, key-value
 - What makes each database type unique?
   * Its type and implementation or extension depending if its SQL or NoSQL.
+
+## Functional programming
+- This paradigm is based on *lambda calculus*, a formal mathematical system which defines computation based on functions (while imperative programming is based on the work of Alan Turing). This was developed mainly by Alonzo Church.
+- An expresion is *referentially transparent* if it can be sustituted with its computed value and the overall program's result will be equivalent.
+- To comply with mathematical constraints, in functional programming variables are immutable (they do not change) and have no side effects.
+- It is said that a language has *first-class functions* if they allow functions to be arguments, values and to be assigned to a variable or a data structure.
